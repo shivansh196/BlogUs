@@ -16,8 +16,8 @@ export default function Navbar(props) {
         </div>
         <div className="rightnav">
           <ul>
-            <li><Link to="/login"><button class="button"> Login </button></Link></li>
-            <li><Link to="/signup"><button class="button"> Signup </button></Link></li>
+            <li><Link to="/login"><button className="button"> Login </button></Link></li>
+            <li><Link to="/signup"><button className="button"> Signup </button></Link></li>
           </ul>
         </div>
       </nav>

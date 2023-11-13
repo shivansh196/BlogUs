@@ -21,8 +21,8 @@ const content = [
 
 export default function Blogs() {
   return (
-    <div class="blogcontainer">
-      <div class="topblogs">
+    <div className="blogcontainer">
+      <div className="topblogs">
         <h1>Top Blogs...</h1>
         <ul id="parentul">
           {content.map((element)=>{
