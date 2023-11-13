@@ -1,10 +1,10 @@
 import './App.css';
-import Navbar from './components/Navbar';
-import About from './components/About';
-import Blogs from './components/Blogs';
-import LoginForm from './components/LoginForm';
-import SignupForm from './components/SignupForm';
-import Createblog from './Components/create/Createblog';
+import Navbar from './Components/Navbar';
+import About from './Components/About';
+import Blogs from './Components/Blogs';
+import LoginForm from './Components/LoginForm';
+import SignupForm from './Components/SignupForm';
+import Createblog from './Components/Create/Createblog';
 
 import {
   Route,
@@ -22,7 +22,7 @@ function App() {
             <Route path='about' element = {<About/>}/>
             <Route path='login' element = {<LoginForm/>}/>
             <Route path='signup' element = {<SignupForm/>}/>
-            <Route path='/create' element={<Createblog />} />
+            <Route path='/create' element= {<Createblog/>}/>
             
 
           </Route>
