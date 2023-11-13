@@ -9,7 +9,7 @@ router.post('/signup' , async (req,res)=>{
         //check weather the user with this email exit
         let user = await User.findOne({email: req.body.email});
         if(user){
-            return res.status(400).json({error: "User already exit!"})
+            return res.status(400).json({error: "User already exist!"})
         } 
 
         //create a new user

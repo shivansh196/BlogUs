@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@aaditya1978/ckeditor5-build-classic": "^0.1.0",
     "@ckeditor/ckeditor5-react": "^6.1.0",
