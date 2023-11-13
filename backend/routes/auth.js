@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User')
+const User  = require('../models/User');
 
 //ROUTE 1::Create a User using: POST "/api/auth/signup"  -- no login required 
 router.post('/signup' , async (req,res)=>{
@@ -9,13 +9,15 @@ router.post('/signup' , async (req,res)=>{
         //check weather the user with this email exit
         let user = await User.findOne({email: req.body.email});
         if(user){
-            return res.status(400).json({error: "Email already exit!"})
-        }
+            return res.status(400).json({error: "User already exit!"})
+        } 
+
         //create a new user
         user = await User.create({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            username: req.body.username
         })
         res.json(user);
     } catch (error) {
@@ -49,4 +51,4 @@ router.post('/login' , async (req,res)=>{
     }
 })
 
-module.exports = router
+exports = router;
