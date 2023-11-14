@@ -12,9 +12,9 @@ const JWT_SECRET = 'Harsh&VERIFYSIGNATURE';  //specify verification signature
 
 //ROUTE 1: Create a User using: POST "/api/v1/auth/createuser"  -- no login required 
 router.post('/createuser' , [
-    body('name','Name must have atleast 3character').isLength({min: 3}),
+    body('name','Name must have atleast 3 characters').isLength({min: 3}),
     body('email','Inter valid email').isEmail(),
-    body('password','Use Stronge').isLength({min: 5})
+    body('password','Use Strong').isLength({min: 5})
 ] , async (req,res)=>{
 
     let success = false;
@@ -22,14 +22,14 @@ router.post('/createuser' , [
     //If there are errors, return Bed Reqiust and the errors
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        return res.status(400).json({errors: errors.array()});
+        return res.status(400).json({success, error: errors.array()});
     }
     //try-catch if server not work
     try {
-        //check weather the user with this email exit
+        //check weather the user with this email exist
         let user = await User.findOne({email: req.body.email});
         if(user){
-            return res.status(400).json({error: "User already exit!"})
+            return res.status(400).json({success, error: "User already exist!"})
         } 
 
         //create a new user
@@ -43,7 +43,7 @@ router.post('/createuser' , [
                 id: user.id
             }
         }
-
+        console.log(data);
         const authToken = jwt.sign(data, JWT_SECRET);
         success = true;
         res.json({success: success,authToken: authToken});

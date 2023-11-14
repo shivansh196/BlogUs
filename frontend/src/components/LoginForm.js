@@ -44,21 +44,21 @@ export default function LoginForm() {
       <div className="outer">
         <div className="mainl">
           <form action="/login" method="post">
-            <div className="section">
+            <div className="sectionl">
               <input type="email" className="input" name="email" id="username"
               value = {user.email}
               onChange={handleInputs}
               placeholder="example@mail.com"/>
               <label htmlFor="username">USERNAME/E-MAIL</label>
             </div>
-            <div className="section">
+            <div className="sectionl">
               <input type="password" className="input" name="pass" id="password" 
               value = {user.pass}
               onChange={handleInputs}
               placeholder="********"/>
               <label htmlFor="password">PASSWORD</label>
             </div>
-            <div className="section">
+            <div className="sectionl">
               <button type="submit" className="button" value="login" onClick={PostData}> LOGIN </button>
             </div>
           </form>

@@ -161,14 +161,6 @@ nav ul li a{
   height:30px;
   padding: 0px 5px;
 }
-.section{
-  padding: 10px 20px;
-  display: flex;
-  flex-direction: column;
-}
-.section label{
-  padding: 5px 8px;
-}
 .button{
   margin-top: 10px;
   margin-left: 10px;
@@ -236,6 +228,14 @@ nav ul li a{
   list-style-type: none;
   align-items: center;
 }
+.sectionl{
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.sectionl label{
+  padding: 5px 8px;
+}
 
 
 /* Signup */
@@ -289,4 +289,13 @@ nav ul li a{
   flex-direction: column;
   list-style-type: none;
   align-items: center;
+}
+.sections{
+  padding: 5px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.sections label{
+  font-size: 15px;
+  padding: 2px 8px;
 }
