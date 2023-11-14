@@ -30,7 +30,7 @@ export default function LoginForm() {
     });
     const data = await res.json();
     if(data.success){
-      window.alert(data.message);
+      // window.alert(data.message);
       console.log(data.message);
       navigate("/");
     } else {
