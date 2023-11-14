@@ -12,6 +12,7 @@ import {
   Routes,
 } from "react-router-dom";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -24,7 +25,6 @@ function App() {
             <Route path='signup' element = {<SignupForm/>}/>
             <Route path='/create' element= {<Createblog/>}/>
             
-
           </Route>
         </Routes>
       </div>

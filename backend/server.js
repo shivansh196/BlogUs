@@ -1,16 +1,23 @@
-const express = require("express");
-const cors = require('cors'); //cors - Cross-Origin Resource Sharing
+import express from 'express';
+import cors from 'cors';  //Cross-Origin Resource Sharing
+import user_auth from './routes/auth.js';
+import blogs from './routes/blogs.js';
+import news from './routes/news.js'
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
-//Avaiable Routes ::
-app.use('/api/auth',require('./routes/auth'))  //auth.js - Create New User and Login
-app.use('/api/blogs',require('./routes/blogs')) //blogs.js - All notes access of loggedin used
-app.use('*',(req,res)=> {
-  res.status(404).json({error: "NOT FOUND"})
+app.get('/',(req,res)=>{
+    res.send("Hello - Main Page")
+})
+
+//Routes :: API = /api/<version number>
+app.use('/api/v1/auth',user_auth);
+app.use('/api/v1/blogs',blogs);
+app.use('/api/v1/news',news);
+app.use('*',(req,res)=>{
+    res.status(404).json({error: "Not Found"})
 });
 
-exports = app;
+export default app;

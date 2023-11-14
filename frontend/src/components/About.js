@@ -2,19 +2,8 @@ import React from 'react'
 
 export default function About() {
   return (
-    <div>
-      <div>
-       About
-      </div>
-      <div>
-       About
-      </div>
-      <div>
-       About
-      </div>
-      <div>
-        About
-      </div>
+    <div className='my-40 text-center'>
+      About
     </div>
   )
 }
