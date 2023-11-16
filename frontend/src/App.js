@@ -5,6 +5,7 @@ import Blogs from './Components/Blogs';
 import LoginForm from './Components/LoginForm';
 import SignupForm from './Components/SignupForm';
 import Createblog from './Components/Create/Createblog';
+import Profile from './Components/Profile/Profile';
 
 import {
   Route,
@@ -24,6 +25,7 @@ function App() {
             <Route path='login' element = {<LoginForm/>}/>
             <Route path='signup' element = {<SignupForm/>}/>
             <Route path='/create' element= {<Createblog/>}/>
+            <Route path='/profile' element= {<Profile/>}/>
             <Route path='*' element= {<div>Page not found</div>}/>
           </Route>
         </Routes>
