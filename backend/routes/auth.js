@@ -31,7 +31,9 @@ router.post('/createuser' , [
         if(user){
             return res.status(400).json({success, error: "User already exist!"})
         } 
-
+        //password protection precess using bcrypt module
+        const salt = await bcrypt.genSalt(10);
+        const safePass = await bcrypt.hash(req.body.password,salt);
         //create a new user
         user = await User.create({
             name: req.body.name,
@@ -40,13 +42,17 @@ router.post('/createuser' , [
         })
         const data = {
             user: {
-                id: user.id
+                id: user.id,
+                username: user.name
             }
         }
         console.log(data);
         const authToken = jwt.sign(data, JWT_SECRET);
+        //Set Cookies ::
+        // res.cookie('auth-token',authToken);
         success = true;
         res.json({success: success,authToken: authToken});
+
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Error occured");
@@ -81,13 +87,18 @@ router.post('/login' , [
         //payload -- user information from database
         const data = {
             user: {
-                id: user.id
+                id: user.id,
+                username: user.name
             }
         }
 
         const authToken = jwt.sign(data, JWT_SECRET);
+        //set Cookies ::
+        // res.cookie('auth-token',authToken);
+    
         success = true;
         res.json({success: success,authToken: authToken});
+
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Error occured");
