@@ -2,11 +2,11 @@ import Comments from '../models/Comments.js';
 
 const newComment = async (req, res) => {
     try {
-        const com = req.body;
+        const newentry = req.body;
         const comment = await new Comments({
             user_id: req.user.id,
             blog_id: req.params.id,
-            comment: com
+            comment: newentry
         });
 
         comment.save();
@@ -21,6 +21,9 @@ const newComment = async (req, res) => {
 const getComments = async (req, res) => {
     try {
         const comments = await Comment.find({ blog_id: req.params.id });
+        if(!comments){
+            res.status(404).send({msg: "No comments have been linked to this blog."});
+        }
         
         res.status(200).json(comments);
     } catch (error) {
