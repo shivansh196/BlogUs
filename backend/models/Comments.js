@@ -1,37 +1,25 @@
 import mongoose from 'mongoose';
 
-const BlogSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-        unique: true
+const CommentSchema = mongoose.Schema({
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user_id',
+        required: true
     },
-    description: {
+    blog_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'blog_id'
+    },
+    comment:{
         type: String,
         required: true
     },
-    picture: {
-        type: String,
-        required: false
-    },
-    video: {
-        type: String,
-        require: false
-    },
-    user: {
-        type: String,
-        required: true
-    },
-    categories: {
-        type: Array,
-        default: 'General'   
-    },
-    createdDate: {
+    commentDate: {
         type: Date,
         default: Date.now
     }
 });
 
-const blog = mongoose.model('blog', BlogSchema);
+const comment = mongoose.model('comment', CommentSchema);
 
-export default blog;
+export default comment;

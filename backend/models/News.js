@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
-const NewsSchema = mongoose.Schema({
+const NewsSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
     title: {
         type: String,
         required: true,
@@ -14,18 +18,11 @@ const NewsSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    user: {
-        type: String,
-        required: true
-    },
     categories: {
         type: Array,
         default: 'General'
-    },
-    createdDate: {
-        type: Date
     }
-});
+},{timestamps: true});
 
 const news = mongoose.model('news', NewsSchema);
 

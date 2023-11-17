@@ -1,37 +1,21 @@
 import mongoose from 'mongoose';
 
-const BlogSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    description: {
-        type: String,
+const LikeSchema = mongoose.Schema({
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user_id',
         required: true
     },
-    picture: {
-        type: String,
-        required: false
+    blog_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'blog_id'
     },
-    video: {
-        type: String,
-        require: false
-    },
-    user: {
-        type: String,
-        required: true
-    },
-    categories: {
-        type: Array,
-        default: 'General'   
-    },
-    createdDate: {
+    likedDate: {
         type: Date,
         default: Date.now
     }
 });
 
-const blog = mongoose.model('blog', BlogSchema);
+const like = mongoose.model('like', LikeSchema);
 
-export default blog;
+export default like;
