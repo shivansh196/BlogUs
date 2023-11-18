@@ -1,10 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link,useNavigate} from 'react-router-dom'
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      navigate('/')
+    }
+  })
   const [user,setUser] = useState({
-    email:"",pass:""
+    email:"",password:""
   })
 
   let name, value;
@@ -17,20 +22,20 @@ export default function LoginForm() {
 
   const PostData = async(e) =>{
     e.preventDefault();
-    const {email,pass} = user;
-    const res = await fetch("/login", {
+    const {email,password} = user;
+    const res = await fetch("/api/v1/auth/login", {
       method: "POST",
       headers:{
         "Content-Type" : "application/json"
       },
       body: JSON.stringify({
         email:email,
-        pass
+        password
       })
     });
     const data = await res.json();
     if(data.success){
-      // window.alert(data.message);
+      localStorage.setItem('token', data.authToken);
       console.log(data.message);
       navigate("/");
     } else {
@@ -52,8 +57,8 @@ export default function LoginForm() {
               <label htmlFor="username">USERNAME/E-MAIL</label>
             </div>
             <div className="sectionl">
-              <input type="password" className="input" name="pass" id="password" 
-              value = {user.pass}
+              <input type="password" className="input" name="password" id="password" 
+              value = {user.password}
               onChange={handleInputs}
               placeholder="********"/>
               <label htmlFor="password">PASSWORD</label>

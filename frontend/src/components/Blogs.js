@@ -1,34 +1,31 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react';
 import BlogItem from './BlogItem';
+import blogContext from '../context/blogs/blogContext';
 
-const content = [
-  {
-    id:1,
-    title: "Title of my first blog is here",
-    desc: "This is the description of my first blog"
-  },
-  {
-    id:2,
-    title: "Title of my second blog is here",
-    desc: "This is the description of my second blog"
-  },
-  {
-    id:3,
-    title: "Title of my third blog is here",
-    desc: "This is the description of my third blog"
-  }
-];
 
-export default function Blogs() {
+export default function Blogs(props) {
+  const context = useContext(blogContext);
+  const {blogs,getBlogs,getUserBlogs} = context;
+  
+  useEffect(()=>{
+    if(props.func==="Top"){
+      getBlogs();
+    } else if(props.func==="My"){
+      getUserBlogs();
+    }
+  })
+
   return (
     <div className="blogcontainer">
       <div className="topblogs">
-        <h1>Top Blogs...</h1>
+        <h1>{props.func} Blogs...</h1>
         <ul id="parentul">
-          {content.map((element)=>{
+          {blogs.map((e)=>{
             return(
-              <li key={element.id}>
-                <BlogItem title={element.title.length>16?element.title.slice(0,12)+"...":element.title} desc={element.desc.length>23?element.desc.slice(0,19)+"...":element.desc} id={element.id}/>
+              <li key={e._id}>
+                <BlogItem title={e.title.length>16?e.title.toString().slice(0,12)+"...":e.title} 
+                desc={e.description.length>23?e.description.toString().slice(0,19)+"...":e.description} 
+                image={e.picture} id={e._id}/>
               </li>
             )
           })}
