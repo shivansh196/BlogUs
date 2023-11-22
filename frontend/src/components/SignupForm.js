@@ -1,10 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link,useNavigate} from 'react-router-dom'
 
 export default function SignupForm() {
   const navigate = useNavigate();
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      navigate('/')
+    }
+  })
   const [user,setUser] = useState({
-    name:"",email:"",pass:"",conpass:""
+    name:"",email:"",password:"",conpass:""
   })
   
   let name, value;
@@ -17,8 +22,8 @@ export default function SignupForm() {
 
   const PostData = async(e) =>{
     e.preventDefault();
-    const {name,email,pass,conpass} = user;
-    if(pass===conpass){
+    const {name,email,password,conpass} = user;
+    if(password===conpass){
       const response = await fetch("/api/v1/auth/createuser", {
         method: "POST",
         headers:{
@@ -27,13 +32,13 @@ export default function SignupForm() {
         body: JSON.stringify({
           name,
           email:email,
-          pass:pass
+          password
         })
       });
       const data = await response.json();
       if(data.success){
-        window.alert(data.authToken);
-        console.log(data.authToken);
+        window.alert("Registration Successful");
+        console.log("Registration Successful");
         navigate("/login");
       } else {
         window.alert(data.error);
@@ -70,8 +75,8 @@ export default function SignupForm() {
               <label htmlFor="username">USERNAME/E-MAIL</label>
             </div>
             <div className="sections">
-              <input type="password" className="input" name="pass" id="password" 
-              value = {user.pass}
+              <input type="password" className="input" name="password" id="password" 
+              value = {user.password}
               onChange={handleInputs}
               placeholder="********"/>
               <label htmlFor="password">PASSWORD</label>

@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
-const BlogSchema = mongoose.Schema({
+const BlogSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
     title: {
         type: String,
         required: true,
@@ -18,19 +22,11 @@ const BlogSchema = mongoose.Schema({
         type: String,
         require: false
     },
-    user: {
-        type: String,
-        required: true
-    },
     categories: {
         type: Array,
         default: 'General'   
-    },
-    createdDate: {
-        type: Date,
-        default: Date.now
     }
-});
+},{timestamps: true});
 
 const blog = mongoose.model('blog', BlogSchema);
 

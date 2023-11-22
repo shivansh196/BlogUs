@@ -23,7 +23,7 @@ router.post('/addnews', fetchuser, [
 ], async (req,res)=>{
     //try-catch use to protact database from malfunctioning
     try {
-        const {title,description,picture,categories,user} = req.body;
+        const {title,description,picture,categories} = req.body;
         //If there are errors, return Bed Reqiust and the errors
         const errors = validationResult(req);
         if(!errors.isEmpty()){
@@ -31,7 +31,7 @@ router.post('/addnews', fetchuser, [
         }
         const news = new News({
             title, description, picture, 
-            categories, user
+            categories, user: req.user.id
         })
         const savedNews = await news.save();
         res.json(savedNews);

@@ -23,7 +23,7 @@ router.post('/addblog', fetchuser, [
 ], async (req,res)=>{
     //try-catch use to protact database from malfunctioning
     try {
-        const {title,description,picture,video,categories,user} = req.body;
+        const {title,description,picture,video,categories} = req.body;
         //If there are errors, return Bed Reqiust and the errors
         const errors = validationResult(req);
         if(!errors.isEmpty()){
@@ -31,7 +31,7 @@ router.post('/addblog', fetchuser, [
         }
         const blogs = new Blogs({
             title, description, picture, video, 
-            categories, user
+            categories, user: req.user.id
         })
         const savedBlog = await blogs.save();
         res.json(savedBlog);
@@ -45,7 +45,7 @@ router.post('/addblog', fetchuser, [
 
 //Route 3: Updating an exiting Blog using PUT "/api/v1/blogs/updateblog" Login required 
 router.put('/updateblog/:id', fetchuser, async (req,res)=>{
-    const {title,description,picture,video,categories,user} = req.body;
+    const {title,description,picture,video,categories} = req.body;
     //create a newBlog object
     const newBlog = {};
     if(title){{newBlog.title = title}}
@@ -53,7 +53,6 @@ router.put('/updateblog/:id', fetchuser, async (req,res)=>{
     if(picture){{newBlog.picture = picture}}
     if(video){{newBlog.video = video}}
     if(categories){{newBlog.categories = categories}}
-    if(user){{newBlog.user = user}}
 
     //check for correct uses with it's own blogs only
     let blog = await Blogs.findById(req.params.id);
