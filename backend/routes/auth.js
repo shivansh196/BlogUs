@@ -46,7 +46,6 @@ router.post('/createuser' , [
                 username: user.name
             }
         }
-        console.log(data);
         const authToken = jwt.sign(data, JWT_SECRET);
         //Set Cookies ::
         // res.cookie('auth-token',authToken);
@@ -105,8 +104,8 @@ router.post('/login' , [
     }
 })
 
-// ROUTE 3:Get loggedin user detail Using POST "/api/v1/auth/getuser" ,Login required
-router.post('/getuser', fetchuser, async (req,res)=>{
+// ROUTE 3:Get loggedin user detail Using GET "/api/v1/auth/getuser" ,Login required
+router.get('/getuser', fetchuser, async (req,res)=>{
     try {
         const userId = req.user.id
         let user = await User.findById(userId).select("-password");
