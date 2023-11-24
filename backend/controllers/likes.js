@@ -1,6 +1,6 @@
 import Likes from '../models/Likes.js';
 
-const newLike = async (req, res) => {
+export const newLike = async (req, res) => {
     try {
         const like = await new Likes({
             user_id: req.user.id,
@@ -16,7 +16,7 @@ const newLike = async (req, res) => {
 }
 
 
-const getLikes = async (req, res) => {
+export const getLikes = async (req, res) => {
     try {
         const likes = await Likes.find({ blog_id: req.params.id });
         
@@ -26,7 +26,7 @@ const getLikes = async (req, res) => {
     }
 }
 
-const deleteLike = async (req, res) => {
+export const deleteLike = async (req, res) => {
     try {
         const like = await Likes.findById(req.params.id);
         await like.delete()
@@ -36,9 +36,3 @@ const deleteLike = async (req, res) => {
         res.status(500).json(error)
     }
 }
-
-export default {
-    newLike,
-    getLikes,
-    deleteLike
-};

@@ -1,8 +1,8 @@
 import Comments from '../models/Comments.js';
 
-const newComment = async (req, res) => {
+export const newComment = async (req, res) => {
     try {
-        const newentry = req.body;
+        const newentry = req.body.comment;
         const comment = await new Comments({
             user_id: req.user.id,
             blog_id: req.params.id,
@@ -18,7 +18,7 @@ const newComment = async (req, res) => {
 }
 
 
-const getComments = async (req, res) => {
+export const getComments = async (req, res) => {
     try {
         const comments = await Comment.find({ blog_id: req.params.id });
         if(!comments){
@@ -31,7 +31,7 @@ const getComments = async (req, res) => {
     }
 }
 
-const deleteComment = async (req, res) => {
+export const deleteComment = async (req, res) => {
     try {
         const comment = await Comment.findById(req.params.id);
         await comment.delete()
@@ -41,9 +41,3 @@ const deleteComment = async (req, res) => {
         res.status(500).json(error)
     }
 }
-
-export default {
-    newComment,
-    getComments,
-    deleteComment
-};
