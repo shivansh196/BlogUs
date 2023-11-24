@@ -174,3 +174,186 @@ body{
   }
 
 }
+
+/* Add these styles to your existing Profile.css file */
+
+body {
+  background-color: #808080;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 3vh;
+  margin-bottom: 5rem;
+  background-color: #808080;
+}
+
+.profile-container .loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.profile-container .loader svg {
+  width: 200px;
+  height: 200px;
+}
+
+.profile-container .profile-card {
+  width: 40%;
+}
+
+.profile-container .card {
+  width: 22rem;
+  border-radius: 8px;
+  background-color: #808080;
+}
+
+.profile-container .card .card-body {
+  padding: 0.5rem;
+}
+
+.profile-container .card .card-body .basic-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.profile-container .card .user-icon {
+  border-radius: 50%;
+  background-color: #1f1d1d;
+}
+
+.profile-container .card h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.profile-container .card .user-email,
+.profile-container .card .user-info {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #181717;
+  margin-bottom: 0.2rem;
+}
+
+.list-group .list-group-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #181717;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.list-group .active {
+  background-color: #8b39bb;
+}
+
+.list-group .list-group-item:hover {
+  background-color: #d2b8e0;
+}
+
+.profile-container .profile-blogs {
+  width: 60%;
+}
+
+.profile-container .profile-blogs .main-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #8b39bb;
+  margin-bottom: 20px;
+}
+
+.profile-container .profile-blogs .blog-card {
+  margin-bottom: 30px;
+  width: 40rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.profile-container .profile-blogs .blog-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-container .profile-blogs .blog-card .card-img-top {
+  height: 30vh;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  object-fit: cover;
+}
+
+.profile-container .profile-blogs .blog-card .card-body {
+  padding: 1rem;
+}
+
+.profile-container .profile-blogs .blog-card .card-body h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #181717;
+  transition: color 0.3s ease-in-out;
+}
+
+.profile-container .profile-blogs .blog-card .card-body h1:hover {
+  color: #8b39bb;
+}
+
+.profile-container .profile-blogs .blog-card .card-body .blog-info {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #181717;
+  margin-bottom: 0.5rem;
+}
+
+.profile-container .profile-blogs .blog-card .card-body .blog-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #181717;
+  margin-top: 1rem;
+}
+
+.profile-container .profile-blogs .blog-card .card-body .blog-items span {
+  padding-right: 1.7rem;
+}
+
+.profile-container .profile-blogs .blog-card .card-body .blog-items button {
+  width: 5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.profile-container .profile-blogs .blog-card .card-body .blog-items button:hover {
+  background-color: #d2b8e0;
+}
+
+@media (max-width: 992px) {
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-container .profile-card,
+  .profile-container .profile-blogs {
+    width: 80%;
+  }
+
+  .profile-container .profile-blogs .blog-card {
+    width: 60%;
+  }
+}
+

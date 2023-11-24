@@ -8,7 +8,7 @@ import BlogState from './context/blogs/BlogState';
 import ReadBlog from './Components/ReadBlog';
 import Createblog from './Components/Create/Createblog';
 import Profile from './Components/Profile/Profile';
-import Dashboard from './Components/Dashboard';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 import {
   Route,
@@ -30,7 +30,7 @@ function App() {
               <Route path='signup' element={<SignupForm />} />
               <Route path='/create' element={<Createblog />} />
               <Route path='/profile' element={<Profile />} />
-            <Route path='/dashboard' element= {<Dashboard/>}/>
+              <Route path='/dashboard' element= {<Dashboard/>}/>
               <Route path='/myblogs' element={<Blogs func="My" />} />
               <Route path='/:id' element={<ReadBlog />} />
               <Route path='*' element={<div className='blogcontainer'><h1>404 Page not found</h1></div>} />

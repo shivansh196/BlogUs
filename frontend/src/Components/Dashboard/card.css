@@ -1,0 +1,27 @@
+.card {
+    width: 100%;
+    max-width: 300px;
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
+   
+   .card img {
+    width: 100%;
+    height: auto;
+   }
+   
+   .card h2 {
+    margin: 20px 0;
+   }
+   
+   .card p {
+    margin: 20px 0;
+   }
+   
+   .card-buttons {
+    display: flex;
+    justify-content: space-between;
+   }
