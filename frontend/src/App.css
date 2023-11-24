@@ -98,6 +98,8 @@ nav ul li a{
 .cover {
   margin: 20px 40px;
   padding: 10px 10px;
+  width: 190px;
+  height: 210px;
   background-color: #191919;
   border-radius: 10px;
   box-shadow: 0.5px 0px grey, -0.5px 0px grey;
@@ -327,4 +329,40 @@ nav ul li a{
 }
 .load{
   height: 80vh;
+}
+
+/* Comments */
+.comment{
+  margin-top: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.commentbox{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  /* align-items: center; */
+}
+.commentbox textarea{
+  padding: 5px 5px;
+  height: 120px;
+  width: 80vw;
+  resize: none;
+}
+.allcomments{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  margin: 40px 0px;
+}
+.commentblock{
+  margin: 15px 20px;
+  padding: 10px 10px;
+  width: 80vw;
+  background-color: #191919;
+  border-radius: 10px;
+  box-shadow: 0.5px 0px grey, -0.5px 0px grey;
+  transition: background-color 0.1s ease-in-out 0s;
 }

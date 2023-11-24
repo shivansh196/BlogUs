@@ -1,6 +1,7 @@
 import React, { useContext, useEffect} from 'react';
 import blogContext from '../context/blogs/blogContext';
 import { useParams } from "react-router-dom"
+import Comments from './Comments';
 
 export default function ReadBlog() {
   const context = useContext(blogContext);
@@ -20,6 +21,9 @@ export default function ReadBlog() {
           </div>
           <div className='blogdesc'>
             <h3>{read.description}</h3>
+          </div>
+          <div className='commentdiv'>
+            <Comments/>
           </div>
         </div>
       </div>

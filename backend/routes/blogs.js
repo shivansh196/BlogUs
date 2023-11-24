@@ -4,7 +4,7 @@ import { body, validationResult } from 'express-validator';
 import Blogs from '../models/Blogs.js';
 import fetchuser from '../middleware/fetchuser.js';
 
-//Route 1: Get All the Blogs using GET "/api/v1/blogs/fetchallblogs" Login required 
+//Route 1: Get All the Blogs of user using GET "/api/v1/blogs/fetchallblogs" Login required 
 router.get('/fetchallblogs', fetchuser, async (req,res)=>{
     try {
         const blogs = await Blogs.find({user: req.user.id});
@@ -43,7 +43,7 @@ router.post('/addblog', fetchuser, [
 })
 
 
-//Route 3: Updating an exiting Blog using PUT "/api/v1/blogs/updateblog" Login required 
+//Route 3: Updating an existing Blog using PUT "/api/v1/blogs/updateblog" Login required 
 router.put('/updateblog/:id', fetchuser, async (req,res)=>{
     const {title,description,picture,video,categories} = req.body;
     //create a newBlog object
@@ -68,7 +68,7 @@ router.put('/updateblog/:id', fetchuser, async (req,res)=>{
 })
 
 
-//Route 4: Deleting an exiting blog using DELETE "/api/blogs/deleteblog" Login required 
+//Route 4: Deleting an existing blog using DELETE "/api/blogs/deleteblog" Login required 
 router.delete('/deleteblog/:id', fetchuser, async (req,res)=>{
     
     //find the blog to be delete and delete it
@@ -86,5 +86,29 @@ router.delete('/deleteblog/:id', fetchuser, async (req,res)=>{
     // res.json({blog})
 })
 
+//Route 5: Get All the Blogs using GET "/api/v1/blogs/getblogs" No Login required 
+router.get('/getblogs', async (req,res)=>{
+    try {
+        const blogs = await Blogs.find();
+        res.json(blogs);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Error occured");
+    }
+})
+
+//Route 1: Get the Blog with id using GET "/api/v1/blogs/readblog" Login required 
+router.get('/readblog/:id', async (req,res)=>{
+    try {
+        const blog = await Blogs.findById(req.params.id);
+        if(!blog){
+            res.status(404).send('Not Found');
+        }
+        res.json(blog);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Error occured");
+    }
+})
 
 export default router;
