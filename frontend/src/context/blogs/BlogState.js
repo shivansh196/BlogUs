@@ -54,6 +54,19 @@ const BlogState = (props) =>{
           setBlogs(data);
       }
 
+      const deleteBlog = async(id)=>{
+        const res = await fetch(`/api/blogs/deleteblog/${id}`, {
+            method: "DELETE",
+            headers:{
+              "Content-Type" : "application/json",
+              "auth-token" : localStorage.getItem("token")
+            }
+          });
+          const data = await res.json();
+          // console.log(data);
+          setComments(data);
+      }
+
         //Get All Comments
         const getComments = async(id)=>{
           const res = await fetch(`/api/v1/blog/comments/fetchcomments/${id}`, {
@@ -87,7 +100,7 @@ const BlogState = (props) =>{
       
       
     return(
-        <BlogContext.Provider value={{blogs,getBlogs,getUserBlogs,read,readBlog,emptyRead,comments,getComments,newComment}}>
+        <BlogContext.Provider value={{blogs,getBlogs,getUserBlogs,deleteBlog,read,readBlog,emptyRead,comments,getComments,newComment}}>
             {props.children}
         </BlogContext.Provider>
     )
