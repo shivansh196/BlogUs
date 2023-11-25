@@ -5,12 +5,11 @@ import CommentItem from './CommentItem';
 
 export default function Comments() {
   const context = useContext(blogContext);
-  let { comments, getComments,newComment} = context;
+  let { comments, getComments ,newComment} = context;
   const [box,setBox] = useState("");
   const { id } = useParams();
   useEffect(() => {
     getComments(id);
-    console.log(comments)
   },[])
 
   const handleInputs = (event) =>{
@@ -40,15 +39,13 @@ export default function Comments() {
           </form>
         </div>
         <div className='allcomments'>
-          <CommentItem/>
-          <CommentItem/>
-          {/* {comments.map((e)=>{
+          {comments.map((e)=>{
             return(
               <li key={e._id}>
-                <CommentItem comment={e.comments} id={e._id}/>
+                <CommentItem comment={e.comment} id={e._id}/>
               </li>
             )
-          })} */}
+          })}
         </div>
       </div>
     </div>

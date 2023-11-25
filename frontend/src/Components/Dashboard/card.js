@@ -1,13 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './card.css';
 
 const Card = ({ image, title, content, blogId, onEdit, onDelete }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleEditBlog = () => {
-    history.push(`/editblog/${blogId}`);
+    navigate(`/editblog/${blogId}`);
   };
 
   const handleDeleteBlog = async () => {

@@ -18,7 +18,7 @@ router.post('/addcomment/:id', fetchuser, newComment);
 
 //Route 3: Deleting an exiting comment using 
 //DELETE "/api/v1/blog/comment/deletecomment/:id"  Login required 
-router.delete('/deleteblog/:id', fetchuser, deleteComment);
+router.delete('/deletecomment/:id', fetchuser, deleteComment);
 
 
 export default router;

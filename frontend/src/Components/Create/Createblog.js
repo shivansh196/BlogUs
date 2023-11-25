@@ -22,30 +22,30 @@ export default function EditPost() {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      navigate("/login");
+  // useEffect(() => {
+  //   if (!localStorage.getItem("token")) {
+  //     navigate("/login");
       
-    }
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/api/user/post/${id}`)
-      .then((res) => {
-        setTitle(res.data.blog.title);
-        setContent(res.data.blog.content);
-        setImageData(res.data.blog.image);
-        setImage(res.data.blog.image);
-      })
-      .catch((err) => {
-        console.error("Error fetching post:",err);
-        navigate("/login");
-      });
-  }, [navigate, id]);
+  //   }
+  //   axios
+  //     .get(`${process.env.REACT_APP_BASE_URL}/api/user/post/${id}`)
+  //     .then((res) => {
+  //       setTitle(res.data.blog.title);
+  //       setContent(res.data.blog.content);
+  //       setImageData(res.data.blog.image);
+  //       setImage(res.data.blog.image);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Error fetching post:",err);
+  //       navigate("/login");
+  //     });
+  // }, [navigate, id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     setSubmitting(true);
     const sanitizeContent = content.trim();
-    if (sanitizeContent.length < 200) {
+    if (sanitizeContent.length < 2) {
       setError(true);
       setErrorMessage("Content must be at least 200 characters long");
       setSubmitting(false);
@@ -55,27 +55,43 @@ export default function EditPost() {
       }, 3000);
       return;
     }
-    const formData = new FormData();
-    formData.append("id", id);
-    formData.append("title", title);
-    formData.append("content", sanitizeContent);
-    formData.append("image", imageData);
-    formData.append("date", new Date());
-    formData.append("token", localStorage.getItem("token"));
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/api/user/edit`, formData)
-      .then((res) => {
-        setSubmitting(false);
-        navigate("/profile");
-      })
-      .catch((err) => {
-        setSubmitting(false);
-        setError(true);
-        setErrorMessage(err.response.data.error);
-        if (err.response.status === 401) {
-          navigate("/login");
-        }
+    const res = await fetch('/api/v1/blogs/addblog', {
+        method: "POST",
+        headers:{
+          "Content-Type" : "application/json",
+          "auth-token" : localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          title,
+          description: sanitizeContent.slice(3,sanitizeContent.length-5)
+        })
       });
+      console.log(imageData);
+      const data = await res.json();
+      console.log(data);
+      navigate("/myblogs");
+
+    // const formData = new FormData();
+    // // formData.append("id", id);
+    // formData.append("title", title);
+    // formData.append("description", sanitizeContent);
+    // formData.append("image", imageData);
+    // formData.append("date", new Date());
+    // formData.append("token", localStorage.getItem("token"));
+    // axios
+    //   .post('/api/v1/blogs/addblog', formData)
+    //   .then((res) => {
+    //     setSubmitting(false);
+    //     navigate("/profile");
+    //   })
+    //   .catch((err) => {
+    //     setSubmitting(false);
+    //     setError(true);
+    //     setErrorMessage(err.response.data.error);
+    //     if (err.response.status === 401) {
+    //       navigate("/login");
+    //     }
+    //   });
   };
 
   return (

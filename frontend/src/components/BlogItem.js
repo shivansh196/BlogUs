@@ -11,10 +11,10 @@ export default function BlogItem(props) {
 
   return (
     <div>
-      <div className="cover">
-        <img src={`images/${props.image}`} className="playsong" alt='cover'/>
-        <h3 className="name playsong" >{props.title}</h3>
-        <h5 className="name playsong">{props.desc}</h5>
+      <div className="blogcover">
+        <img src={`images/${props.image}`} className="showblog" alt='cover'/>
+        <h3 className="name showblog" >{props.title}</h3>
+        <h5 className="name showblog">{props.desc}</h5>
         <Link to={`/${props.id}`} className='readMore' onClick={handleRead}>Read more</Link>
       </div>
     </div>

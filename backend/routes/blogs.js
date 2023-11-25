@@ -23,7 +23,7 @@ router.post('/addblog', fetchuser, [
 ], async (req,res)=>{
     //try-catch use to protact database from malfunctioning
     try {
-        const {title,description,picture,video,categories} = req.body;
+        const {title,description,picture,video,categories} = req.body.formData;
         //If there are errors, return Bed Reqiust and the errors
         const errors = validationResult(req);
         if(!errors.isEmpty()){

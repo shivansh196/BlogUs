@@ -10,7 +10,7 @@ export default function Navbar(props) {
   }
 
   return (
-    <div>
+    <div className="blogusnav">
       <nav>
         <div className="leftnav">
           <ul>
