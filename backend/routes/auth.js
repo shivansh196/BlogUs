@@ -48,7 +48,7 @@ router.post('/createuser' , [
         }
         const authToken = jwt.sign(data, JWT_SECRET);
         //Set Cookies ::
-        // res.cookie('auth-token',authToken);
+         res.cookie('auth-token',authToken);
         success = true;
         res.json({success: success,authToken: authToken});
 
@@ -93,7 +93,7 @@ router.post('/login' , [
 
         const authToken = jwt.sign(data, JWT_SECRET);
         //set Cookies ::
-        // res.cookie('auth-token',authToken);
+         res.cookie('auth-token',authToken);
     
         success = true;
         res.json({success: success,authToken: authToken});

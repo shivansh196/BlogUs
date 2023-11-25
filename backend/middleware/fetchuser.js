@@ -5,9 +5,9 @@ const JWT_SECRET = 'Harsh&VERIFYSIGNATURE';
 const fetchuser = (req,res,next)=>{
     //Get the user from jwt toked and add id to req object
     //Check auth-token in THUNDER CLIENT ::
-    const token = req.header('auth-token');
+    //const token = req.header('auth-token');
     //Check auth-token in BROWSER ::
-    //const token = req.cookies?.auth-token;
+    const token = req.cookies?.auth-token;
     if(!token){
         return res.status(401).send({error: "Please authenticate using a valid token"});
     }

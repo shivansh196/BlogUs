@@ -1,10 +1,10 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './card.css';
 
 const Card = ({ image, title, content, blogId, onEdit, onDelete }) => {
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleEditBlog = () => {
     history.push(`/editblog/${blogId}`);
@@ -21,9 +21,12 @@ const Card = ({ image, title, content, blogId, onEdit, onDelete }) => {
     }
   };
 
+  // Assuming 'image' is the filename or relative path to the image on the backend
+  const imageUrl = `http://localhost:2500/file/${image}`;
+
   return (
     <div className="card">
-      <img src={image} alt={title} />
+      <img src={imageUrl} alt={title} />
       <h2>{title}</h2>
       <p>{content}</p>
       <div className="card-buttons">
