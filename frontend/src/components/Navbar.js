@@ -10,14 +10,14 @@ export default function Navbar(props) {
   }
 
   return (
-    <div>
+    <div className="blogusnav">
       <nav>
         <div className="leftnav">
           <ul>
             <li className="logo"><img src={props.logo} alt="logo"/></li>
             <li className="logo"><img src='images/blogus.jpeg' alt="logo"/></li>
             <li><NavLink to="/">Blogs</NavLink></li>
-            <li><NavLink to="/profile">Dashboard</NavLink></li>
+            <li><NavLink to="/myblogs">Dashboard</NavLink></li>
           </ul>
         </div>
         <div className="rightnav">

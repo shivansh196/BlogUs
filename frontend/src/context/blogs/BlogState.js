@@ -7,6 +7,7 @@ const BlogState = (props) =>{
       const blogsInitial = [];
       const [blogs,setBlogs] = useState(blogsInitial);
       const [read,setRead] = useState(blogsInitial);
+      const [comments,setComments] = useState(blogsInitial);
 
       //Read Blog with Id
       const readBlog = async(id)=>{
@@ -52,10 +53,54 @@ const BlogState = (props) =>{
         //   console.log(data);
           setBlogs(data);
       }
+
+      const deleteBlog = async(id)=>{
+        const res = await fetch(`/api/blogs/deleteblog/${id}`, {
+            method: "DELETE",
+            headers:{
+              "Content-Type" : "application/json",
+              "auth-token" : localStorage.getItem("token")
+            }
+          });
+          const data = await res.json();
+          // console.log(data);
+          setComments(data);
+      }
+
+        //Get All Comments
+        const getComments = async(id)=>{
+          const res = await fetch(`/api/v1/blog/comments/fetchcomments/${id}`, {
+              method: "GET",
+              headers:{
+                "Content-Type" : "application/json",
+                "auth-token" : localStorage.getItem("token")
+              }
+            });
+            const data = await res.json();
+            // console.log(data);
+            setComments(data);
+        }
+  
+        //Get All Comments
+        const newComment = async(id,comment)=>{
+          const res = await fetch(`/api/v1/blog/comments/addcomment/${id}`, {
+              method: "POST",
+              headers:{
+                "Content-Type" : "application/json",
+                "auth-token" : localStorage.getItem("token"),
+              },
+              body: JSON.stringify({
+                comment
+              })
+            });
+            const data = await res.json();
+            console.log(data);
+        }
+            
       
       
     return(
-        <BlogContext.Provider value={{blogs,getBlogs,getUserBlogs,read,readBlog,emptyRead}}>
+        <BlogContext.Provider value={{blogs,getBlogs,getUserBlogs,deleteBlog,read,readBlog,emptyRead,comments,getComments,newComment}}>
             {props.children}
         </BlogContext.Provider>
     )

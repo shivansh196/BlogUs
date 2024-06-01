@@ -20,7 +20,7 @@ export const newComment = async (req, res) => {
 
 export const getComments = async (req, res) => {
     try {
-        const comments = await Comment.find({ blog_id: req.params.id });
+        const comments = await Comments.find({blog_id: req.params.id});
         if(!comments){
             res.status(404).send({msg: "No comments have been linked to this blog."});
         }

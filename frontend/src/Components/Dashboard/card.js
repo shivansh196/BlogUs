@@ -1,23 +1,24 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, {useContext} from 'react';
+import blogContext from '../../context/blogs/blogContext';
+import { useNavigate, useParams } from 'react-router-dom';
 import './card.css';
 
 const Card = ({ image, title, content, blogId, onEdit, onDelete }) => {
-  const history = useNavigate();
+  const history = useHistory();
 
   const handleEditBlog = () => {
-    history.push(`/editblog/${blogId}`);
+    navigate(`/editblog/${blogId}`);
   };
 
   const handleDeleteBlog = async () => {
     if (window.confirm('Are you sure you want to delete this blog?')) {
-      try {
-        await axios.delete(`http://localhost:2500/api/v1/blogs/deleteblog/${blogId}`);
-        window.location.reload(); // Alternatively, update the state in the parent component
-      } catch (error) {
-        console.error('Error deleting blog:', error);
-      }
+      deleteBlog(id);
+      // try {
+      //   await axios.delete(`http://localhost:2500/api/v1/blogs/deleteblog/${blogId}`);
+      //   window.location.reload(); // Alternatively, update the state in the parent component
+      // } catch (error) {
+      //   console.error('Error deleting blog:', error);
+      // }
     }
   };
 
